@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const API_KEY = "065b298d1d4d73b7f9b69fd2f3eb974d";
 
@@ -59,7 +60,7 @@ export function Films() {
             <div className="box-all-films">
                 {filteredMovies.length > 0 ? (
                     filteredMovies.map((movie) => (
-                        <div className="box-films" key={movie.id}>
+                        <Link to={`/film/${movie.id}`} className="box-films" key={movie.id}>
                             <img
                                 className="box-film-img"
                                 src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
@@ -68,7 +69,7 @@ export function Films() {
                             <div className="box-film-content">
                                 <h2 className="title-films">{movie.title}</h2>
                             </div>
-                        </div>
+                        </Link>
                     ))
                 ) : (
                     <p>Aucun film trouvé pour votre recherche.</p>
