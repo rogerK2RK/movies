@@ -1,38 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
-const API_KEY = "065b298d1d4d73b7f9b69fd2f3eb974d";
+import { MovieContext } from "../context/movieContext";
 
 export function Films() {
-    const [movies, setMovies] = useState([]);
-    const [filteredMovies, setFilteredMovies] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("");
-    const [loading, setLoading] = useState(true);
+    const { movies, filteredMovies, setFilteredMovies, searchQuery, setSearchQuery, loading } = useContext(MovieContext);
 
-    useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day`, {
-                    params: {
-                        api_key: API_KEY,
-                        language: "fr-FR",
-                        page: 1,
-                    },
-                });
-                setMovies(response.data.results);
-                setFilteredMovies(response.data.results);
-                setLoading(false);
-            } catch (error) {
-                console.error("Erreur du chargement :", error);
-                setLoading(false);
-            }
-        };
 
-        fetchMovies();
-    }, []);
-
-   
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         const filtered = movies.filter((movie) =>
