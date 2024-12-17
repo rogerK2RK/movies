@@ -32,3 +32,72 @@ input {
   height: 400px;
   object-fit: cover;
 }
+
+.box-film {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box-image {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box-content {
+  width: 50%;
+}
+
+.box-image h1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/**/
+.box-film {
+  margin: 2% 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1;
+}
+
+h1 {
+  width: 100%;
+}
+
+.film-img {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 700px;
+  width: 500px;
+  object-fit: cover;
+}
+
+.box-content {
+  font-size: 20px;
+  text-align: justify;
+  width: 50%;
+}
+
+.box-image {
+  width: 40%;
+}
+
+.title {
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.txt-bld {
+  font-weight: bold;
+}
+
+.error{
+  display: flex;
+  justify-content: center;
+}

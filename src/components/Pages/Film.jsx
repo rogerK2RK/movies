@@ -42,14 +42,14 @@ export function Film() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="box-series">
-                <h1 className="title">{movie.title}</h1>
+        <div className="box-film">
+            <h1 className="title">{movie.title}</h1>
             <div className="box-image">
-                <img className="serie-img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+                <img className="film-img" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
             </div>
             <div className="box-content">
                 <p><span className="txt-bld">Titre : </span>{movie.title}</p>
-                <p><span className="txt-bld">Note : </span><span className={movie.vote_average>=5 ? "green" : "red"}>{ Math.round(movie.vote_average * Math.pow(10, 1))/ Math.pow(10, 1)}/10</span></p>
+                <p><span className="txt-bld">Lien : </span><a href={movie.homepage}>{movie.homepage}</a></p>
                 <p><span className="txt-bld">Déscription : </span>{movie.overview}</p>
             </div>
         </div>
