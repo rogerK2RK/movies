@@ -6,20 +6,27 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 export function Profile() {
-    let naviagte = useNavigate()
-    const {isAuthenticated} = useAuth()
+    const navigate = useNavigate()
+    const { isAuthenticated } = useAuth()
 
-    useEffect(async () => {
-        const token = localStorage.getItem('token')
-        if(!isAuthenticated && !token){
-            navigate('/')
+    useEffect(() => {
+        const checkAuth = async () => {
+            const token = localStorage.getItem('token')
+            if (!isAuthenticated && !token) {
+                navigate('/')
+            } else if (token) {
+                const decodedToken = jwtDecode(token)
+                try {
+                    const fetchUserById = await axios.get(`http://localhost:3002/user/${decodedToken.user}`)
+                    console.log(fetchUserById)
+                } catch (err) {
+                    console.error(err)
+                }
+            }
         }
-        else{
-            const decodedToken = jwtDecode(token)
-            const fethUserById = await axios.get(`http://localhost:3002/user/${decodedToken.user}`)
-            console.log(fethUserById)
-        }
-    }, [])
+
+        checkAuth()
+    }, [isAuthenticated, navigate])
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center px-6 py-12">
